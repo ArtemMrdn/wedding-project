@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent-color: #8b5a4d;
+  --text-color: #263731;
+  --white: #ffffff;
+}
+
+body {
+  font-family: Literata, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: #fef9f3;
+}
+
+/* Welcome section */
+.welcome-section {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 80px;
+}
+
+.header-section-page {
+  position: absolute;
+  bottom: -4%;
+  right: 0;
+  max-width: 100px; /* Можно регулировать размер */
+  height: auto;
+  max-width: 210px;
+  z-index: 1;
+  opacity: 0.25;
+}
+
+.names-overlay {
+  font-family: Imperial Script;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.name-top {
+  margin-bottom: -20px; /* Поднимаем первое имя */
+  position: relative;
+  top: -50px; /* Дополнительное смещение вверх */
+}
+
+.name-bottom {
+  margin-top: -20px; /* Опускаем второе имя */
+  position: relative;
+  top: 50px; /* Дополнительное смещение вниз */
+}
+
+/* Сохраняем существующие стили */
+.name {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.ampersand {
+  font-size: 3rem;
+  font-weight: 600;
+  font-style: italic;
+  margin: 10px 0; /* Отступ вокруг амперсанда */
+}
+
+/* Content section */
+.content-section {
+  text-align: center;
+  background: var(--white);
+}
+
+.invitation-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 20px auto 0;
+  max-width: 600px;
+}
+
+/* Date section */
+.date-section {
+  position: relative;
+  min-height: 220px; /* Укажите нужную высоту */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.date-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./images/date_page.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4; /* Прозрачность только для фона */
+  z-index: 0;
+}
+
+.date-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Сохраняем существующие стили для текста */
+.save-date {
+  color: #263731;
+  font-weight: 100;
+  padding-bottom: 80px;
+}
+
+.save-date-title {
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.wedding-date {
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+/* Общие стили */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-color);
+  font-size: 30px;
+  font-weight: 200;
+  text-align: center;
+}
+
+/* Location section */
+.location-section {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.location-section a {
+  font-style: italic;
+}
+
+.map-link {
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #263731;
+  width: 166px;
+  color: #263731;
+  font-size: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  line-height: 40px;
+  text-align: center;
+}
+
+.location-page {
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.55;
+}
+
+/* Timing section */
+.timing-section {
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Добавляем чтобы изображение не выходило за границы */
+}
+
+.section-timing-page {
+  position: absolute;
+  left: 0; /* Прижимаем к левому краю */
+  top: 0;
+  transform: scaleX(-1) scaleY(-1); /* Зеркальное отражение */
+  max-width: 100px; /* Можно регулировать размер */
+  height: auto;
+  max-width: 210px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.timing-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.time-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.time-wrapper {
+  text-align: center;
+}
+
+.time {
+  font-size: 2rem;
+  color: var(--accent-color);
+  white-space: nowrap;
+}
+
+.ampm {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+.event {
+  font-style: italic;
+  font-size: 1.1rem;
+  text-align: left;
+  flex: 1;
+}
+
+.dash {
+  letter-spacing: 0;
+  font-size: 40px;
+}
+
+/* Dresscode section */
+.dresscode-section {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px auto;
+  flex-wrap: wrap;
+  max-width: 500px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+/* RSVP section */
+.input-section {
+  position: relative;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.input-section-page {
+  position: absolute;
+  left: 0; /* Прижимаем к левому краю */
+  top: 40%;
+  max-width: 100px; /* Можно регулировать размер */
+  height: auto;
+  max-width: 140px;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.rsvp-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: start;
+}
+
+input[type="text"] {
+  min-width: 280px;
+  padding: 16px 10px;
+  border: 1px solid #263731;
+  border-radius: 8px;
+  color: #263731;
+  background-color: #fef9f3;
+  font-style: italic;
+}
+
+.submit-btn {
+  width: 150px;
+  background-color: transparent;
+  color: #263731;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: 1px solid #263731;
+  cursor: pointer;
+  font-style: italic;
+}
+
+/* Final section */
+.final-section {
+  position: relative;
+  min-height: 220px; /* Настройте по необходимости */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.final-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./images/final_section.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.75; /* Прозрачность фона */
+  z-index: 0;
+}
+
+.final-text {
+  position: relative;
+  z-index: 1;
+  top: -40px; /* Поднимаем на 40px */
+}
+
+/* Сохраняем существующие стили текста */
+.waiting-text,
+.main-date {
+  font-size: 30px;
+  position: relative;
+  z-index: 2;
+}
