@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap");
 
 * {
   margin: 0;
@@ -20,7 +20,19 @@ body {
   background-color: #fef9f3;
 }
 
-/* Welcome section */
+.desktop-message {
+  display: none; /* По умолчанию скрыто */
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f1e4d4;
+  color: #263731;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .welcome-section {
   position: relative;
   width: 100%;
@@ -38,7 +50,7 @@ body {
   position: absolute;
   bottom: -4%;
   right: 0;
-  max-width: 100px; /* Можно регулировать размер */
+  max-width: 100px;
   height: auto;
   max-width: 210px;
   z-index: 1;
@@ -46,7 +58,7 @@ body {
 }
 
 .names-overlay {
-  font-family: Imperial Script;
+  font-family: Tangerine;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -56,18 +68,17 @@ body {
 }
 
 .name-top {
-  margin-bottom: -20px; /* Поднимаем первое имя */
+  margin-bottom: -20px;
   position: relative;
-  top: -50px; /* Дополнительное смещение вверх */
+  top: -50px;
 }
 
 .name-bottom {
-  margin-top: -20px; /* Опускаем второе имя */
+  margin-top: -20px;
   position: relative;
-  top: 50px; /* Дополнительное смещение вниз */
+  top: 50px;
 }
 
-/* Сохраняем существующие стили */
 .name {
   font-size: 4rem;
   font-weight: 600;
@@ -77,10 +88,9 @@ body {
   font-size: 3rem;
   font-weight: 600;
   font-style: italic;
-  margin: 10px 0; /* Отступ вокруг амперсанда */
+  margin: 10px 0;
 }
 
-/* Content section */
 .content-section {
   text-align: center;
   background: var(--white);
@@ -93,10 +103,9 @@ body {
   max-width: 600px;
 }
 
-/* Date section */
 .date-section {
   position: relative;
-  min-height: 220px; /* Укажите нужную высоту */
+  min-height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +125,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.4; /* Прозрачность только для фона */
+  opacity: 0.4;
   z-index: 0;
 }
 
@@ -125,7 +134,6 @@ body {
   z-index: 1;
 }
 
-/* Сохраняем существующие стили для текста */
 .save-date {
   color: #263731;
   font-weight: 100;
@@ -144,7 +152,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* Общие стили */
 .container {
   max-width: 400px;
   margin: 0 auto;
@@ -160,7 +167,6 @@ h3 {
   text-align: center;
 }
 
-/* Location section */
 .location-section {
   text-align: center;
   padding: 30px 0;
@@ -190,19 +196,18 @@ h3 {
   opacity: 0.55;
 }
 
-/* Timing section */
 .timing-section {
   text-align: center;
   position: relative;
-  overflow: hidden; /* Добавляем чтобы изображение не выходило за границы */
+  overflow: hidden;
 }
 
 .section-timing-page {
   position: absolute;
-  left: 0; /* Прижимаем к левому краю */
+  left: 0;
   top: 0;
-  transform: scaleX(-1) scaleY(-1); /* Зеркальное отражение */
-  max-width: 100px; /* Можно регулировать размер */
+  transform: scaleX(-1) scaleY(-1);
+  max-width: 100px;
   height: auto;
   max-width: 210px;
   z-index: -1;
@@ -250,7 +255,6 @@ h3 {
   font-size: 40px;
 }
 
-/* Dresscode section */
 .dresscode-section {
   text-align: center;
   padding: 30px 0;
@@ -281,9 +285,9 @@ h3 {
 
 .input-section-page {
   position: absolute;
-  left: 0; /* Прижимаем к левому краю */
+  left: 0;
   top: 40%;
-  max-width: 100px; /* Можно регулировать размер */
+  max-width: 100px;
   height: auto;
   max-width: 140px;
   z-index: -1;
@@ -322,10 +326,9 @@ input[type="text"] {
   font-style: italic;
 }
 
-/* Final section */
 .final-section {
   position: relative;
-  min-height: 220px; /* Настройте по необходимости */
+  min-height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,20 +348,57 @@ input[type="text"] {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.75; /* Прозрачность фона */
+  opacity: 0.75;
   z-index: 0;
 }
 
 .final-text {
   position: relative;
   z-index: 1;
-  top: -40px; /* Поднимаем на 40px */
+  top: -40px;
 }
 
-/* Сохраняем существующие стили текста */
 .waiting-text,
 .main-date {
   font-size: 30px;
   position: relative;
   z-index: 2;
+}
+
+/* Показываем сообщение на широких экранах */
+@media (min-width: 481px) {
+  .desktop-message {
+    display: flex;
+  }
+
+  /* Скрываем основной контент на широких экранах */
+  .welcome-section,
+  .content-section,
+  .date-section,
+  .location-section,
+  .timing-section,
+  .dresscode-section,
+  .input-section,
+  .final-section {
+    display: none !important;
+  }
+}
+
+/* Показываем основной контент только на узких экранах */
+@media (max-width: 480px) {
+  .desktop-message {
+    display: none;
+  }
+
+  /* Все секции отображаются как обычно */
+}
+
+@media (max-width: 390px) {
+  input[type="text"] {
+    min-width: 200px;
+  }
+
+  .form-group {
+    text-align: center;
+  }
 }
