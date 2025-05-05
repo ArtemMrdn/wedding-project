@@ -1,154 +1,69 @@
-// Конфигурация
-const APP_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbw8ITjdTV8hwerP5A0Y3H4ASJgzhsmVVqpPDdJJ3NyqdLV_iVHP1sp0uTUx54r33ARw4A/exec";
+const TELEGRAM_BOT_TOKEN = "8080788151:AAGE5VDIMPtMbWvomIgHGWaiSl34ZqeUatw";
+const TELEGRAM_CHAT_ID = "660519190";
 
-// Главная функция отправки
+async function sendToTelegram(data) {
+  const text = `📌 Новый ответ на приглашение:\nИмя: ${data.name}\nПрисутствие: ${data.attendance}`;
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+      }),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Ошибка отправки в Telegram:", error);
+    throw error;
+  }
+}
+
 async function handleFormSubmit(event) {
   event.preventDefault();
-
   const form = event.target;
   const submitBtn = form.querySelector(".submit-btn");
-  const messageEl =
-    form.querySelector(".form-message") || createMessageElement(form);
+  const messageEl = form.querySelector(".form-message");
 
-  // Получаем данные формы
   const formData = {
     name: form.querySelector("#name").value.trim(),
     attendance:
       form.querySelector('input[name="attendance"]:checked')?.value ||
       "Не указано",
-    timestamp: new Date().toISOString(),
   };
 
-  // Валидация
   if (!formData.name) {
-    showMessage(messageEl, "Пожалуйста, укажите ваше имя", "error");
+    showMessage(messageEl, "Пожалуйста, укажите имя", "error");
     return;
   }
 
-  // Показываем загрузку
   setButtonState(submitBtn, "loading");
-
   try {
-    // Отправка данных
-    const response = await sendDataToGoogleSheets(formData);
-
-    if (response.status === "success") {
-      showMessage(messageEl, "✅ Ваш ответ успешно сохранён!", "success");
-      form.reset();
-    } else {
-      throw new Error(response.message || "Неизвестная ошибка");
-    }
+    await sendToTelegram(formData);
+    showMessage(messageEl, "✅ Ваш ответ отправлен!", "success");
+    form.reset();
   } catch (error) {
-    console.error("Ошибка отправки:", error);
-    showMessage(messageEl, `❌ Ошибка: ${error.message}`, "error");
+    showMessage(messageEl, "❌ Ошибка отправки", "error");
   } finally {
     setButtonState(submitBtn, "default");
   }
 }
 
-// Функция отправки данных
-async function sendDataToGoogleSheets(data) {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  };
-
-  // Пробуем сначала стандартный fetch
-  try {
-    const response = await fetch(APP_SCRIPT_URL, options);
-    return await response.json();
-  } catch (fetchError) {
-    console.warn("Ошибка fetch, пробуем JSONP...", fetchError);
-    return await sendViaJsonp(data);
-  }
-}
-
-// Резервный метод через JSONP
-function sendViaJsonp(data) {
-  return new Promise((resolve, reject) => {
-    const callbackName = `jsonp_${Date.now()}`;
-    const script = document.createElement("script");
-
-    window[callbackName] = (response) => {
-      delete window[callbackName];
-      document.body.removeChild(script);
-      resolve(response);
-    };
-
-    const url = new URL(APP_SCRIPT_URL);
-    url.searchParams.set("callback", callbackName);
-    url.searchParams.set("data", JSON.stringify(data));
-
-    script.src = url.toString();
-    script.onerror = () => {
-      reject(new Error("Ошибка JSONP запроса"));
-    };
-
-    document.body.appendChild(script);
-  });
-}
-
-// Вспомогательные функции
-function createMessageElement(form) {
-  const messageEl = document.createElement("div");
-  messageEl.className = "form-message";
-  form.appendChild(messageEl);
-  return messageEl;
-}
-
-function showMessage(el, text, type = "info") {
+function showMessage(el, text, type) {
   el.textContent = text;
   el.style.display = "block";
-  el.style.color =
-    type === "error" ? "#f44336" : type === "success" ? "#4CAF50" : "#2196F3";
-
-  setTimeout(() => {
-    el.style.display = "none";
-  }, 5000);
+  el.style.color = type === "error" ? "#f44336" : "#4CAF50";
+  setTimeout(() => (el.style.display = "none"), 5000);
 }
 
 function setButtonState(button, state) {
-  const states = {
-    loading: {
-      text: "⏳ Отправка...",
-      disabled: true,
-    },
-    success: {
-      text: "✓ Готово",
-      disabled: true,
-      bgColor: "#4CAF50",
-    },
-    error: {
-      text: "⛔ Ошибка",
-      disabled: false,
-      bgColor: "#f44336",
-    },
-    default: {
-      text: "Отправить",
-      disabled: false,
-      bgColor: "",
-    },
-  };
-
-  const { text, disabled, bgColor } = states[state] || states.default;
-  button.textContent = text;
-  button.disabled = disabled;
-  button.style.backgroundColor = bgColor;
+  button.textContent = state === "loading" ? "⏳ Отправка..." : "Отправить";
+  button.disabled = state === "loading";
 }
 
-// Инициализация
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".rsvp-form");
-  if (form) {
-    form.addEventListener("submit", handleFormSubmit);
-
-    // Создаем элемент для сообщений, если его нет
-    if (!form.querySelector(".form-message")) {
-      form.appendChild(createMessageElement(form));
-    }
-  }
+  if (form) form.addEventListener("submit", handleFormSubmit);
 });
