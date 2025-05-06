@@ -121,6 +121,26 @@
       </div>
     </section>
 
+    <section class="gift-section">
+      <div class="container">
+        <p class="gift-text">
+          <em
+            >Если вы хотите сделать подарок на наше торжество,<br />
+            отдайте предпочтение конверту</em
+          >
+        </p>
+        <img
+          src="./envelope-svgrepo-com.svg"
+          alt="Gift icon"
+          class="gift-icon"
+          style="opacity: 0.4; width: 40px; margin: 10px auto; display: block"
+        />
+        <p class="gift-note">
+          Ваше присутствие - уже самый ценный подарок для нас!
+        </p>
+      </div>
+    </section>
+
     <section class="dresscode-section">
       <h1>DRESS CODE</h1>
       <div class="container">
@@ -183,6 +203,37 @@
                 <input type="radio" name="attendance" value="Не смогу быть" />
                 <span>Не смогу быть</span>
               </label>
+            </div>
+          </div>
+
+          <div class="form-group additional-fields" style="display: none">
+            <div class="form-group">
+              <input
+                type="number"
+                id="guests"
+                placeholder="Количество гостей (включая вас)"
+                min="1"
+                max="10"
+              />
+            </div>
+
+            <div class="form-group">
+              <p>Нужна ли ночёвка?</p>
+              <div class="radio-options">
+                <label>
+                  <input type="radio" name="accommodation" value="Да" />
+                  <span>Да</span>
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="accommodation"
+                    value="Нет"
+                    checked
+                  />
+                  <span>Нет</span>
+                </label>
+              </div>
             </div>
           </div>
 

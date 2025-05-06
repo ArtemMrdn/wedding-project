@@ -21,7 +21,7 @@ body {
 }
 
 .desktop-message {
-  display: none; /* По умолчанию скрыто */
+  display: none;
   text-align: center;
   padding: 50px 20px;
   background-color: #f1e4d4;
@@ -276,7 +276,25 @@ h3 {
   border: 1px solid #ddd;
 }
 
-/* RSVP section */
+.gift-section {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.gift-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.gift-note {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  margin-top: 15px;
+  opacity: 0.8;
+}
+
 .input-section {
   position: relative;
   text-align: center;
@@ -297,6 +315,7 @@ h3 {
 .rsvp-form {
   max-width: 400px;
   margin: 0 auto;
+  font-family: Literata;
 }
 
 .form-group {
@@ -312,6 +331,36 @@ input[type="text"] {
   color: #263731;
   background-color: #fef9f3;
   font-style: italic;
+}
+
+.additional-fields {
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+input[type="number"] {
+  min-width: 280px;
+  padding: 16px 10px;
+  border: 1px solid #263731;
+  border-radius: 8px;
+  color: #263731;
+  background-color: #fef9f3;
+  font-style: italic;
+  margin-bottom: 15px;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 390px) {
+  input[type="number"] {
+    min-width: 200px;
+  }
 }
 
 .submit-btn {
@@ -379,6 +428,7 @@ input[type="text"] {
   .timing-section,
   .dresscode-section,
   .input-section,
+  .gift-section,
   .final-section {
     display: none !important;
   }

@@ -1,8 +1,43 @@
 const TELEGRAM_BOT_TOKEN = "8080788151:AAGE5VDIMPtMbWvomIgHGWaiSl34ZqeUatw";
 const TELEGRAM_CHAT_ID = "660519190";
 
+// Показ/скрытие дополнительных полей
+document.addEventListener("DOMContentLoaded", function () {
+  const attendanceRadios = document.querySelectorAll(
+    'input[name="attendance"]'
+  );
+
+  attendanceRadios.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const additionalFields = document.querySelector(".additional-fields");
+      if (this.value === "Да, с радостью") {
+        additionalFields.style.display = "block";
+      } else {
+        additionalFields.style.display = "none";
+        // Сброс значений
+        document.getElementById("guests").value = "";
+        document.querySelector(
+          'input[name="accommodation"][value="Нет"]'
+        ).checked = true;
+      }
+    });
+  });
+
+  // Инициализация формы
+  const form = document.querySelector(".rsvp-form");
+  if (form) {
+    form.addEventListener("submit", handleFormSubmit);
+  }
+});
+
 async function sendToTelegram(data) {
-  const text = `📌 Новый ответ на приглашение:\nИмя: ${data.name}\nПрисутствие: ${data.attendance}`;
+  let text = `📌 Новый ответ на приглашение:\nИмя: ${data.name}\nПрисутствие: ${data.attendance}`;
+
+  if (data.attendance === "Да, с радостью") {
+    text += `\nКоличество гостей: ${data.guests || 1}`;
+    text += `\nНочёвка: ${data.accommodation || "Нет"}`;
+  }
+
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
   try {
@@ -29,9 +64,10 @@ async function handleFormSubmit(event) {
 
   const formData = {
     name: form.querySelector("#name").value.trim(),
-    attendance:
-      form.querySelector('input[name="attendance"]:checked')?.value ||
-      "Не указано",
+    attendance: form.querySelector('input[name="attendance"]:checked')?.value,
+    guests: form.querySelector("#guests")?.value,
+    accommodation: form.querySelector('input[name="accommodation"]:checked')
+      ?.value,
   };
 
   if (!formData.name) {
@@ -44,6 +80,8 @@ async function handleFormSubmit(event) {
     await sendToTelegram(formData);
     showMessage(messageEl, "✅ Ваш ответ отправлен!", "success");
     form.reset();
+    // Скрываем дополнительные поля после отправки
+    document.querySelector(".additional-fields").style.display = "none";
   } catch (error) {
     showMessage(messageEl, "❌ Ошибка отправки", "error");
   } finally {
@@ -62,8 +100,3 @@ function setButtonState(button, state) {
   button.textContent = state === "loading" ? "⏳ Отправка..." : "Отправить";
   button.disabled = state === "loading";
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".rsvp-form");
-  if (form) form.addEventListener("submit", handleFormSubmit);
-});
