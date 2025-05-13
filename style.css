@@ -98,13 +98,13 @@ body {
 .name-top {
   margin-bottom: -20px;
   position: relative;
-  top: -50px;
+  top: 30px;
 }
 
 .name-bottom {
   margin-top: -20px;
   position: relative;
-  top: 50px;
+  top: -30px;
 }
 
 .name {
@@ -164,7 +164,6 @@ body {
 .save-date {
   color: #263731;
   font-weight: 100;
-  padding-bottom: 80px;
 }
 
 .save-date-title {
@@ -337,7 +336,7 @@ h3 {
 .input-section {
   position: relative;
   text-align: center;
-  padding: 30px 0;
+  padding-bottom: 20px;
 }
 
 .input-section-page {
@@ -351,6 +350,14 @@ h3 {
   opacity: 0.15;
 }
 
+.title-form {
+  padding-bottom: 20px;
+}
+
+.title-contact {
+  padding-top: 20px;
+}
+
 .rsvp-form {
   max-width: 400px;
   margin: 0 auto;
@@ -358,7 +365,7 @@ h3 {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  padding-bottom: 10px;
   text-align: start;
 }
 
@@ -372,10 +379,13 @@ input[type="text"] {
   font-style: italic;
 }
 
+input[type="radio"] {
+  accent-color: #768d45;
+}
+
 .additional-fields {
   transition: all 0.3s ease;
   overflow: hidden;
-  margin: 20px 0;
 }
 
 input[type="number"] {
@@ -386,7 +396,7 @@ input[type="number"] {
   color: #263731;
   background-color: #fef9f3;
   font-style: italic;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   -moz-appearance: textfield;
 }
 
