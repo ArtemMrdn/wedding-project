@@ -100,3 +100,43 @@ function setButtonState(button, state) {
   button.textContent = state === "loading" ? "⏳ Отправка..." : "Отправить";
   button.disabled = state === "loading";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Анимация секций при скролле
+  const animateSections = () => {
+    const sections = document.querySelectorAll(".section-animate");
+    const windowHeight = window.innerHeight;
+    const triggerOffset = 100;
+
+    sections.forEach((section) => {
+      const sectionTop = section.getBoundingClientRect().top;
+
+      if (sectionTop < windowHeight - triggerOffset) {
+        section.classList.add("section-visible");
+      }
+    });
+  };
+
+  // Проверяем при загрузке
+  animateSections();
+
+  // И при скролле (с троттлингом для производительности)
+  let isScrolling = false;
+  window.addEventListener("scroll", () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        animateSections();
+        isScrolling = false;
+      });
+      isScrolling = true;
+    }
+  });
+
+  // Анимация первой секции с небольшой задержкой
+  setTimeout(() => {
+    const firstAnimatedSection = document.querySelector(".date-section");
+    if (firstAnimatedSection) {
+      firstAnimatedSection.classList.add("section-visible");
+    }
+  }, 300);
+});

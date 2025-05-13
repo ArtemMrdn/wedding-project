@@ -216,11 +216,22 @@ h3 {
   text-align: center;
 }
 
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 10px;
+  gap: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .location-page {
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55;
+  opacity: 1;
+  height: 350px;
+  height: 100%;
 }
 
 .timing-section {
@@ -440,6 +451,32 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 30px;
   position: relative;
   z-index: 2;
+}
+
+/* Анимации для секций */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Плавный скролл */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-animate {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Показываем сообщение на широких экранах */
