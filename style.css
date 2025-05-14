@@ -21,7 +21,6 @@ body {
 }
 
 .desktop-message {
-  display: none;
   text-align: center;
   padding: 50px 20px;
   background-color: #f1e4d4;
@@ -236,6 +235,7 @@ h3 {
   text-align: center;
   position: relative;
   overflow: hidden;
+  padding-top: 30px;
 }
 
 .section-timing-page {
@@ -254,23 +254,51 @@ h3 {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .time-item {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
   justify-content: center;
-  gap: 15px;
 }
 
 .time-wrapper {
   text-align: center;
+  min-width: 80px;
 }
 
 .time {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--accent-color);
   white-space: nowrap;
+  font-weight: 400;
+}
+
+.ampm {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+.dash {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin: 0 5px;
+  padding-bottom: 8px;
+}
+
+.event {
+  font-style: italic;
+  font-size: 1.25rem;
+  text-align: left;
+  min-width: 120px;
+  text-align: center;
 }
 
 .ampm {
@@ -354,7 +382,7 @@ h3 {
 }
 
 .title-contact {
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .rsvp-form {
@@ -421,6 +449,35 @@ input[type="number"]::-webkit-inner-spin-button {
   border: 1px solid #263731;
   cursor: pointer;
   font-style: italic;
+}
+
+.congratulation-section {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.congratulation-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.instagram-link {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.instagram-icon {
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-icon:hover {
+  opacity: 1;
 }
 
 .final-section {
@@ -503,6 +560,7 @@ html {
   .dresscode-section,
   .input-section,
   .gift-section,
+  .congratulation-section,
   .final-section {
     display: none !important;
   }
