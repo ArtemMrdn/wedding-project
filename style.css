@@ -85,7 +85,6 @@ body {
 
 .names-overlay {
   font-family: Tangerine;
-  display: flex;
   gap: 15px;
   align-items: center;
   position: relative;
@@ -98,13 +97,13 @@ body {
 .name-top {
   margin-bottom: -20px;
   position: relative;
-  top: 30px;
+  top: -30px;
 }
 
 .name-bottom {
   margin-top: -20px;
   position: relative;
-  top: -30px;
+  top: 30px;
 }
 
 .name {
