@@ -208,7 +208,7 @@ h3 {
 
 .map-link {
   display: block;
-  margin: 20px auto;
+  margin-bottom: 20px;
   border: 1px solid #263731;
   width: 166px;
   color: #263731;
@@ -269,7 +269,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   width: 100%;
   justify-content: center;
 }
