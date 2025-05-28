@@ -1,5 +1,5 @@
-const TELEGRAM_BOT_TOKEN = "8080788151:AAGE5VDIMPtMbWvomIgHGWaiSl34ZqeUatw";
-const TELEGRAM_CHAT_ID = "660519190";
+const TELEGRAM_BOT_TOKEN = "8015332822:AAENoAkeyBYFNUezY8ityBE1yto1qW1BZVk";
+const TELEGRAM_CHAT_ID = "7446230071";
 
 // Показ/скрытие дополнительных полей
 document.addEventListener("DOMContentLoaded", function () {
