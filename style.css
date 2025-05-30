@@ -547,28 +547,31 @@ html {
   }
 }
 
-@media (min-width: 481px) {
-  .desktop-message {
+@media (min-width: 480px) {
+  body {
     display: flex;
+    justify-content: center;
   }
 
-  .welcome-section,
-  .content-section,
-  .date-section,
-  .pages-section,
-  .timing-section,
-  .dresscode-section,
-  .input-section,
-  .gift-section,
-  .congratulation-section,
-  .final-section {
-    display: none !important;
+  .container-wrapper {
+    width: 479px;
+    margin: 0 auto;
+    background-color: #fef9f3;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   }
-}
 
-@media (max-width: 480px) {
-  .desktop-message {
-    display: none;
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .welcome-section {
+    height: 60vh;
+  }
+
+  .photo-grid {
+    max-width: 479px;
   }
 }
 
