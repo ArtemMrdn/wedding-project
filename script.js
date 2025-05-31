@@ -78,7 +78,7 @@ async function handleFormSubmit(event) {
   setButtonState(submitBtn, "loading");
   try {
     await sendToTelegram(formData);
-    showMessage(messageEl, "✅ Ваш ответ отправлен!", "success");
+    showMessage(messageEl, "Ваш ответ отправлен!", "success");
     form.reset();
     // Скрываем дополнительные поля после отправки
     document.querySelector(".additional-fields").style.display = "none";
@@ -93,7 +93,9 @@ function showMessage(el, text, type) {
   el.textContent = text;
   el.style.display = "block";
   el.style.color = type === "error" ? "#f44336" : "#4CAF50";
-  setTimeout(() => (el.style.display = "none"), 5000);
+  el.style.fontFamily = "Literata, sans-serif";
+  el.style.fontStyle = "italic";
+  setTimeout(() => (el.style.display = "none"), 8000);
 }
 
 function setButtonState(button, state) {
