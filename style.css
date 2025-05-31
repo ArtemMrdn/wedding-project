@@ -403,7 +403,8 @@ h3 {
 .rsvp-form {
   max-width: 400px;
   margin: 0 auto;
-  font-family: Literata;
+  font-family: Literata, sans-serif;
+  font-style: italic;
 }
 
 .form-group {
@@ -488,6 +489,7 @@ input[type="number"]::-webkit-inner-spin-button {
   line-height: 1.5;
   margin-bottom: 16px;
   color: var(--accent-color);
+  font-style: italic;
 }
 
 .instagram-link {
